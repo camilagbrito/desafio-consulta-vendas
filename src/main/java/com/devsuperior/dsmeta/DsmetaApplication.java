@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
 
 @SpringBootApplication
-public class DsmetaApplication implements CommandLineRunner {
+public class DsmetaApplication{
 
 	private SaleRepository repository;
 	private SaleService service;
@@ -19,8 +19,5 @@ public class DsmetaApplication implements CommandLineRunner {
 		SpringApplication.run(DsmetaApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
 
-	}
 }

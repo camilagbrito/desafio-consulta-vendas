@@ -1,6 +1,7 @@
 package com.devsuperior.dsmeta.repositories;
 
 import com.devsuperior.dsmeta.dto.SaleMinDTO;
+import com.devsuperior.dsmeta.dto.SaleSumDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,5 +21,10 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
     )
     Page<SaleMinDTO> searchReport(LocalDate minDate, LocalDate maxDate, String name, Pageable pageable);
 
-
+    @Query("SELECT new com.devsuperior.dsmeta.dto.SaleSumDTO(obj.seller.name, SUM(obj.amount) AS total)"
+            + "FROM Sale obj "
+            + " WHERE obj.date BETWEEN :minDate AND :maxDate "
+            + "GROUP BY obj.seller.name"
+    )
+    List<SaleSumDTO> searchSumarry(LocalDate minDate, LocalDate maxDate);
 }

@@ -5,25 +5,27 @@ import com.devsuperior.dsmeta.entities.Sale;
 import java.time.LocalDate;
 
 public class SaleSumDTO {
-    private Double amount;
+
     private String sellerName;
+    private Double total;
 
-    public SaleSumDTO( Double amount, String sellerName) {
+    public SaleSumDTO(String sellerName, Double total) {
 
-        this.amount = amount;
+
         this.sellerName = sellerName;
+        this.total = total;
     }
 
     public SaleSumDTO(Sale entity) {
-        amount = entity.getAmount();
         sellerName = entity.getSeller().getName();
-    }
-
-    public Double getAmount() {
-        return amount;
+        total = entity.getAmount();
     }
 
     public String getSellerName() {
         return sellerName;
     }
+    public Double getTotal() {
+        return total;
+    }
+
 }
